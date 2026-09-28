@@ -69,6 +69,10 @@ further analysis.
 **What can be used**
 - Supports the view that Personal Consumer NPL can serve as an early warning signal for housing loan stress.
 - Useful as discussion material for risk/credit policy teams when designing monitoring dashboards — Housing NPL should not be watched in isolation.
+**What cannot be used**
+- A correlation of 0.335 is statistically significant but not strong enough to treat Personal Consumer NPL as a reliable standalone trigger.
+- Because the series is aggregated (credit cards, personal loans, auto, BNPL), product-level signals cannot be separated.
+- Without internal customer-level data (LTV, DTI, individual arrears), the finding cannot be directly applied to underwriting or limit-setting decisions.
 
 ## Skills Demonstrated
 - Time-series analysis with lag correlation
