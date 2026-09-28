@@ -24,6 +24,13 @@ consumer loan delinquency when assessing mortgage applications.
 This analysis asks: does the data support a stronger role for 
 consumer loan arrears as an early warning signal for housing loan 
 stress?
+### Hypothesis
+- Personal Consumer NPL acts as a leading indicator of Housing NPL, with a lag of approximately 3 months.
+- This relationship is expected to be more visible around the OCR hiking cycle (2022–2023) and the subsequent easing period.
+
+### Validation Approach
+- Pearson cross-correlation and lag analysis using RBNZ S50 data
+- Visual inspection of both time series together with the OCR cycle
 
 ## Data Sources
 - **RBNZ S50** — Banks: Assets – Non-performing loan ratios 
@@ -58,6 +65,10 @@ measure across multiple product types. Disaggregated data by product
 as Centrix may reveal stronger or more specific leading indicators 
 of housing loan stress. This is identified as a direction for 
 further analysis.
+
+**What can be used**
+- Supports the view that Personal Consumer NPL can serve as an early warning signal for housing loan stress.
+- Useful as discussion material for risk/credit policy teams when designing monitoring dashboards — Housing NPL should not be watched in isolation.
 
 ## Skills Demonstrated
 - Time-series analysis with lag correlation
