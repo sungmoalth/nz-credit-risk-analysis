@@ -1,6 +1,10 @@
 # nz-credit-risk-analysis
 # 🇳🇿 NZ Credit Risk Analysis: Personal Consumer NPL as a Leading Indicator of Housing NPL
-
+# Data Source:
+# - RBNZ S50: Banks – Assets – Loans by asset quality (Non-performing loan ratios)
+# - Official page: https://www.rbnz.govt.nz/statistics/series/registered-banks/banks-assets-loans-by-asset-quality
+# - Long-run NPL ratios file (Dec 2008 – current) available as XLSX on the same page
+# - Analysis period used: Jan 2020 – Jul 2026 (approx.)
 ## Overview
 This project investigates whether Personal Consumer loan delinquency 
 rates can serve as a leading indicator of housing loan delinquency 
