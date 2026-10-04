@@ -1,3 +1,4 @@
+**Live demo:** https://nz-npl-monitor.streamlit.app
 # nz-credit-risk-analysis
 # 🇳🇿 NZ Credit Risk Analysis: Personal Consumer NPL as a Leading Indicator of Housing NPL
 # Data Source:
