@@ -35,27 +35,37 @@ st.sidebar.markdown(
 def load_npl_data():
     raw = pd.read_excel("hs50-long-run.xlsx", header=None)
 
-    # Find first row that looks like a date label (e.g. "Dec 2008")
+    # Find first data row (e.g. "Dec 2008")
     start_idx = None
-    for i, val in enumerate(raw.iloc[:, 0].astype(str)):
-        if "200" in val or "201" in val or "202" in val:
-            start_idx = i
-            break
+    for i in range(len(raw)):
+        val = raw.iloc[i, 0]
+        if pd.isna(val):
+            continue
+        s = str(val).strip()
+        # Match patterns like Dec 2008, Jan 2009, ...
+        if len(s) >= 6 and any(ch.isdigit() for ch in s):
+            # Prefer rows that look like "Mon YYYY"
+            if any(m in s for m in [
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ]):
+                start_idx = i
+                break
 
     if start_idx is None:
         raise ValueError("Could not find date rows in hs50-long-run.xlsx")
 
-    df = raw.iloc[start_idx:, [0, 2, 3]].copy()  # A=date, C=Housing, D=Personal consumer
+    # A=date, C=Housing (col 2), D=Personal consumer (col 3)
+    df = raw.iloc[start_idx:, [0, 2, 3]].copy()
     df.columns = ["date", "housing_npl", "consumer_npl"]
 
-    # Parse dates like "Dec 2008"
     df["date"] = pd.to_datetime(df["date"], format="%b %Y", errors="coerce")
     df["housing_npl"] = pd.to_numeric(df["housing_npl"], errors="coerce")
     df["consumer_npl"] = pd.to_numeric(df["consumer_npl"], errors="coerce")
     df = df.dropna(subset=["date", "housing_npl", "consumer_npl"])
     df = df.sort_values("date").reset_index(drop=True)
 
-    # Align with original analysis window (optional but useful)
+    # Same window as original analysis
     df = df[df["date"] >= "2020-01-01"].copy()
     return df
 
