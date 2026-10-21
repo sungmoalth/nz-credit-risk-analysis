@@ -24,7 +24,8 @@ Personal Consumer NPL may show a positive lagged correlation with Housing NPL, p
 - Pearson cross-correlation across a range of lags (1–12 months), not a single lag chosen after the fact
 - Visual inspection of both time series together with the OCR cycle
 - Note: both series are macro time series with long-run trends, so correlation alone can be inflated by shared trend rather than a genuine lead-lag relationship (see Limitations)
-
+- Stationarity checks (ADF, KPSS) on both NPL series
+- Sensitivity check: Pearson lag correlation on first-differenced series
 ## Data Sources
 - RBNZ S50 — Banks: Assets – Non-performing loan ratios (Dec 2008 – current) | rbnz.govt.nz
 - RBNZ B2 — Wholesale Interest Rates, Monthly close (2018 – current) | rbnz.govt.nz
@@ -36,13 +37,16 @@ Personal Consumer NPL may show a positive lagged correlation with Housing NPL, p
 - Jupyter Notebook — documented analysis workflow
 - Pearson Cross-Correlation — lag analysis across multiple lags
 - Time-series visualisation — multi-axis trend analysis
-
+- Python (pandas, matplotlib, scipy, statsmodels)
 ## Key Findings
 - Personal Consumer NPL shows a statistically significant positive **correlation** with Housing NPL at a 3-month lag (r = 0.335, p = 0.003), the strongest among the lags tested (1–12 months)
 - Visually, Personal Consumer NPL and Housing NPL move in the same general direction around the OCR hiking cycle (2022–2023) and subsequent easing (2024–2025); this is consistent with — but does not confirm — a leading relationship
 - As Personal Consumer NPL is an aggregated indicator (comprising credit cards, personal loans, auto loans, and BNPL), further analysis at the sub-category level may reveal stronger or weaker leading relationships
-
+- At **levels**, Personal Consumer NPL shows a significant positive correlation with Housing NPL at a 3-month lag (r = 0.335, p = 0.003), the strongest among lags 1–12
+- **ADF / KPSS** on the analysis window: Personal Consumer NPL gives mixed signals (ADF p = 0.43, KPSS p = 0.10); Housing NPL looks non-stationary (ADF p = 0.68, KPSS p = 0.01)
+- After **first differencing**, the lag-3 correlation falls to r = 0.039 (p = 0.74) and is not significant
+- The level result is therefore treated as exploratory and possibly trend-driven, not as evidence of a robust short-run leading indicator
 ## Limitations & Next Steps
 - **Correlation, not causation**: a positive lagged correlation does not establish that consumer NPL *causes* or *predicts* housing NPL. Both series may be jointly driven by a common factor (e.g. OCR changes, cost-of-living pressure, unemployment) rather than one leading the other.
-- **Trend/spurious correlation risk**: both series trend over the 2020–2026 period, which can inflate correlation estimates. Results should be interpreted alongside a check on stationarity/differenced series, which is a planned next step.
+- **Trend/spurious correlation risk**: both series trend over the 2020–2026 period, which can inflate correlation estimates. * **Trend / spurious correlation:** ADF and KPSS were run on both series. Housing NPL is non-stationary on both tests; Consumer NPL is mixed. The significant level correlation at lag 3 (r = 0.335) does **not** survive first differencing (r = 0.039, p = 0.74), which is consistent with shared trends or common macro factors rather than a stable lead-lag relationship in period-to-period changes.
 - **Reverse causality is not ruled out**: housing-related financial stress
